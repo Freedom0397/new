@@ -1,0 +1,45 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    int x,y;
+    cin >> x >> y;
+    int f[x][y];
+    for (int i=0;i<x;i++)
+    {
+    	for (int j=0;j<y;j++)
+    	{
+    		f[i][j]=0;
+		}
+	}
+    int g[4][2]={
+	{0,1},
+	{1,0},
+	{0,-1},
+	{-1,0}};
+    int a=0,b=0;
+    int d=0;
+    for (int i=1;i<=x*y;i++)
+    {
+    	f[a][b]=i;
+    	int m=a+g[d][0];
+    	int n=b+g[d][1];
+    	if (m==x||n==y||f[m][n]>0||m<0||n<0)
+    	{
+    		d=(d+1)%4;
+		}
+		a+=g[d][0];
+		b+=g[d][1];
+	}
+	for (int i=0;i<x;i++)
+	{
+		for (int j=0;j<y;j++)
+		{
+			cout << right << setw(3) << f[i][j];
+		}
+		cout << endl;
+	}
+}
+
